@@ -1,0 +1,136 @@
+use('MetaPSELib');
+db.UnitDefinition.drop()
+db.UnitDefinition.insertMany([
+  //七个基本单位，参见Unitful.jl的pkgdefaults.jl文件，using Unitful之后，实际上这些不定义也是可以的。但是我们都存在mongodb里头，为了完整性，还是都写上。
+  //使用Unitful的宏，可以这样定义新单位
+  //@unit m "m" Meter m true true
+  //具体如何定义，参见Unitful的文档
+
+  { '_id': 1, 'symbol': 'm', 'abbr': "m","name":"Meter","equals":"m","tf":true,"autodocs":true},
+  { '_id': 2, 'symbol': 's', 'abbr': "s","name":"Second","equals":"s","tf":true,"autodocs":true},
+  { '_id': 3, 'symbol': 'A', 'abbr': "A","name":"Ampere","equals":"A","tf":true,"autodocs":true},
+  { '_id': 4, 'symbol': 'K', 'abbr': "K","name":"Kelvin","equals":"K","tf":true,"autodocs":true},
+  { '_id': 5, 'symbol': 'cd', 'abbr': "cd","name":"Candela","equals":"cd","tf":true,"autodocs":true},
+  { '_id': 6, 'symbol': 'g', 'abbr': "g","name":"Gram","equals":"g","tf":true,"autodocs":false},
+  { '_id': 7, 'symbol': 'mol', 'abbr': "mol","name":"Mole","equals":"mol","tf":true,"autodocs":true},
+
+//以下这些单位复制自daetools的quantity.cpp文件。
+//实际上也是定义一系列的单位，我们统一使用Unitful的格式，根据Unitful的文档，可以改写成上面的记录的格式
+  { '_id': 8, 'symbol': 'rad', 'abbr': "rad","name":"Radian","equals":"rad","tf":false,"autodocs":false}, 
+  { '_id': 9, 'symbol': 'sr', 'abbr': "sr","name":"Steradian","equals":"sr","tf":false,"autodocs":false},
+    // base_unit sr  = base_unit(1.0, 0, 0, 0, 0, 0, 0, 0); // Steradian
+
+    // base_unit g    = milli * kg;
+    // base_unit t    = kilo  * kg;
+
+    // // Time
+    // base_unit min  = 60    * s;
+    // base_unit hour = 3600  * s;
+    // base_unit day  = 43200 * s;
+    //     base_unit Hz   = s^(-1);
+
+    // // Length related:
+    // base_unit cm = centi * m;
+
+    // // Volume:
+    // base_unit l  = 1E-3 * (m^3);
+    // base_unit dl = deci * l;
+    // base_unit ml = milli * l;
+
+    // // Energy:
+    // base_unit N  = kg * m / (s^2); // Newtown
+    // base_unit J  = N * m;          // Joule
+    // base_unit W  = J / s;          // Watt
+
+    // // Electromagnetism:
+    // base_unit C   = A * s;                    // Coulomb
+    // base_unit Ohm = J * s / (C^2);            // Ohm
+    // base_unit V   = kg * (m^2) / (A * (s^3)); // Volt
+    // base_unit F   = C / V;                    // Farad
+    // base_unit T   = kg / ((s^2) * A);         // Tesla
+    // base_unit H   = V * s / A;                // Henry
+    // base_unit S   = A / V;                    // Siemens
+    // base_unit Wb  = T * (m^2);                // Weber
+
+    // // Pressure:
+    // base_unit Pa  = N / (m^2); // Pascal
+
+    // // Viscosity
+    // base_unit P  = Pa * s;       // Poise
+    // base_unit St = (cm^2) / s;   // Stoke
+
+    // // Radioactivity
+    // base_unit Bq  = s^(-1);     // Radioactivity, Becquerel
+    // base_unit Gy  = J / kg;     // Absorbed Dose, Gray
+    // base_unit Sv  = J / kg;     // Equivalent Dose, Sievert
+
+    // // Optics
+    // base_unit lx = cd * sr / (m^2); // Illuminance, Lux
+    // base_unit lm = cd * sr;         // Luminous Flux, Lumen
+
+    // // Catalytic Activity
+    // base_unit kat = mol / s;  // Katal
+
+    // // Temporary used SI units
+    // base_unit knot = (1852.0/3600.0) * m / s; // Knot
+    // base_unit bar  = 1E5 * Pa;                // Bar
+    // base_unit b    = 1E-28 * (m^2);           // Barn
+    // base_unit Ci   = 3.7E10 * Bq;             // Curie
+    // base_unit R    = 2.58E-4 * C / kg;        // Roentgen
+    // base_unit rd   = 0.01 * Gy;               // Rad (absorbed radiation dose)
+    // base_unit rem	 = 0.01 * Sv;               // Rem (Roentgen equivalent man)
+
+//也可参见SBML.jl的文件，https://github.com/LCSB-BioCore/SBML.jl/blob/master/src/unitful.jl
+//把必须的单位都给定义出来
+
+//参见asend4的models/measures.a4l文件，就是定义了一系列的单位。我们也把它们实现一下，
+// meter = {m};
+// pc = {3.08374e+16*m};
+// parsec = {pc};
+// kpc = {kilo*pc};
+// Mpc = {mega*pc};
+// km = {kilo*m};
+// dm = {m/10};
+// cm = {m/100};
+// mm = {milli*m};
+// um = {micro*m};
+// nm = {nano*m};
+// kilometer = {km};
+// centimeter = {cm};
+// millimeter = {mm};
+// micron = {um};
+// nanometer = {nm};
+// angstrom = {m/1e10};
+// fermi = {m/1e15};
+//具体有哪些，参考models/measures.a4l文件，https://github.com/ascend4/ascend4/blob/master/models/measures.a4l
+
+//然后，参加gproms的导出文件，把gproms中定义了的单位都定义出来
+
+
+//当然，用户也可以自己定义自己的单位，这是后话。我们允许用户定义的东西放在别的数据库UserLib。在MetaPSELib放我们核心的不变的定义。
+]);
+
+//下面定义变量类型，其实就是gproms中的变量类型
+//变量类型有名字，有单位，有最大值，有最小值，参见gproms的搞法
+
+db.VariableType.drop()
+db.VariableType.insertMany([
+  { '_id': 1, 'VariableType': 'length', 'unit': "m", 'minvalue': 0.00001, 'maxvalue': 100.000 },
+  { '_id': 2, 'VariableType': 'jkl', 'unit': "mol", 'minvalue': 1, 'maxvalue': 100 },
+  //仿照gproms的格式描述别的变量类型
+]);
+
+
+//接下来是基本组件，组件有最基本的变量、参数、方程，实际上port也是一种组件。
+//变量，就要有名字，有变量类型，
+//参数，有名字，有单位，是否需要最大最小值？
+//方程，就需要引用变量，把方程的表达式写出来
+//组件当然还可能有子组件
+
+db.Components.drop()
+db.Components.insertMany([
+  { '_id': 1, 'unit': 'abc', 'price': 10, 'quantity': 2, 'date': new Date('2014-03-01T08:00:00Z') },
+  { '_id': 2, 'unit': 'jkl', 'price': 20, 'quantity': 1, 'date': new Date('2014-03-01T09:00:00Z') },
+]);
+
+use('UserLib');
