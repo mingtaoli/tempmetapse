@@ -1,0 +1,44 @@
+  use("MetaPSELib");
+  db.Connectors.drop()
+  db.Connectors.insertMany([  
+{
+    "name": "energy",
+    "variables": [
+        {
+            "name": "energy",
+            "variabletype": "energy_rate_kJ_per_s"
+        }
+    ]
+},
+{
+    "name": "HeatTransfer",
+    "variables": [
+        {
+            "name": "T",
+            "variabletype": "temperature"
+        },
+        {
+            "name": "Q",
+            "variabletype": "heat_flux"
+        },
+    ]
+},
+
+{
+    "name": "Shaft_rpm",
+    "variables": [
+        {
+            "name": "nu",
+            "variabletype": "rotational_frequency"
+        },
+    ],
+    "parameters": [
+        {
+            "name":"use_inertia",
+            "parametertype": "integer",
+            "defaultvalue": 0
+        },
+    ],
+},
+ 
+]);
