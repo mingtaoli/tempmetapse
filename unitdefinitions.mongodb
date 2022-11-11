@@ -1,0 +1,41 @@
+use("MetaPSELib");
+db.UnitDefinitions.drop()
+db.UnitDefinitions.insertMany([
+//-------------------------------------------------------------------------------------------------------
+  {"symbol": "m",  "abbr": "m",  "name": "Meter",  "equals": "m",  "tf": true,  "autodocs": true},
+  {"symbol": "s",  "abbr": "s",  "name": "Second",  "equals": "s",  "tf": true,  "autodocs": true},
+  {"symbol": "A",  "abbr": "A",  "name": "Ampere",  "equals": "A",  "tf": true,  "autodocs": true},
+  {"symbol": "K",  "abbr": "K",  "name": "Kelvin",  "equals": "K",  "tf": true,  "autodocs": true},
+  {"symbol": "cd",  "abbr": "cd",  "name": "Candela",  "equals": "cd",  "tf": true,  "autodocs": true},
+  {"symbol": "g",  "abbr": "g",  "name": "Gram",  "equals": "g",  "tf": true,  "autodocs": false},
+  {"symbol": "mol",  "abbr": "mol",  "name": "Mole",  "equals": "mol",  "tf": true,  "autodocs": true},
+//-------------------------------------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------------------
+  {"symbol": "Hz",  "abbr": "Hz",  "name": "Hertz",  "equals": "1/s",  "tf": true,  "autodocs": true},
+  {"symbol": "min",  "abbr": "min",  "name": "Minute",  "equals": "60s",  "tf": false,  "autodocs": false},
+  {"symbol": "hour",  "abbr": "hour",  "name": "Hour",  "equals": "3600s",  "tf": false,  "autodocs": false},
+  {"symbol": "day",  "abbr": "day",  "name": "Day",  "equals": "43200s",  "tf": false,  "autodocs": false},
+//-------------------------------------------------------------------------------------------------------
+  {"symbol": "rad",  "abbr": "rad",  "name": "Radian",  "equals": "1",  "tf": true,  "autodocs": true},
+  {"symbol": "sr",  "abbr": "sr",  "name": "Steradian",  "equals": "1",  "tf": true,  "autodocs": true},
+  {"symbol": "°",  "abbr": "°",  "name": "Degree",  "equals": "pi/180",  "tf": false,  "autodocs": false},
+//-------------------------------------------------------------------------------------------------------
+  {"symbol": "N",  "abbr": "N",  "name": "Newton",  "equals": "1kg*m/s^2",  "tf": true,  "autodocs": true},
+  {"symbol": "Pa",  "abbr": "Pa",  "name": "Pascal",  "equals": "1N/m^2",  "tf": true,  "autodocs": true},
+  {"symbol": "J",  "abbr": "J",  "name": "Joule",  "equals": "1N*m",  "tf": true,  "autodocs": true},
+  {"symbol": "W",  "abbr": "W",  "name": "Watt",  "equals": "1J/s",  "tf": true,  "autodocs": true},
+//-------------------------------------------------------------------------------------------------------
+  {"symbol": "C",  "abbr": "C",  "name": "Coulomb",  "equals": "1A*s",  "tf": true,  "autodocs": true},
+  {"symbol": "V",  "abbr": "V",  "name": "Volt",  "equals": "1W/A",  "tf": true,  "autodocs": true},
+  {"symbol": "Ω",  "abbr": "Ω",  "name": "Ohm",  "equals": "1V/A",  "tf": true,  "autodocs": true},
+  {"symbol": "S",  "abbr": "S",  "name": "Siemens",  "equals": "1/Ω",  "tf": true,  "autodocs": true},
+  {"symbol": "F",  "abbr": "F",  "name": "Farad",  "equals": "1s^4*A^2/(kg*m^2)",  "tf": true,  "autodocs": true},
+  {"symbol": "H",  "abbr": "H",  "name": "Henry",  "equals": "1J/(A^2)",  "tf": true,  "autodocs": true},
+  {"symbol": "T",  "abbr": "T",  "name": "Tesla",  "equals": "1kg/(A*s^2)",  "tf": true,  "autodocs": true},
+  {"symbol": "Wb",  "abbr": "Wb",  "name": "Weber",  "equals": "1kg*m^2/(A*s^2)",  "tf": true,  "autodocs": true},
+//-------------------------------------------------------------------------------------------------------
+  {"symbol": "lm",  "abbr": "lm",  "name": "Lumen",  "equals": "1cd*sr",  "tf": true,  "autodocs": true},
+  {"symbol": "lx",  "abbr": "lx",  "name": "Lux",  "equals": "1lm/m^2",  "tf": true,  "autodocs": true},
+  {"symbol": "Bq",  "abbr": "Bq",  "name": "Becquerel",  "equals": "1/s",  "tf": true,  "autodocs": true},
+]);
