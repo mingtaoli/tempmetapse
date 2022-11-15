@@ -1,0 +1,7 @@
+{"symbol": "m",  "abbr": "m",  "name": "Meter",  "equals": "m",  "tf": true,  "autodocs": true}
+{"symbol": "s",  "abbr": "s",  "name": "Second",  "equals": "s",  "tf": true,  "autodocs": true}
+{"symbol": "A",  "abbr": "A",  "name": "Ampere",  "equals": "A",  "tf": true,  "autodocs": true}
+{"symbol": "K",  "abbr": "K",  "name": "Kelvin",  "equals": "K",  "tf": true,  "autodocs": true}
+{"symbol": "cd",  "abbr": "cd",  "name": "Candela",  "equals": "cd",  "tf": true,  "autodocs": true}
+{"symbol": "g",  "abbr": "g",  "name": "Gram",  "equals": "g",  "tf": true,  "autodocs": false}
+{"symbol": "mol",  "abbr": "mol",  "name": "Mole",  "equals": "mol",  "tf": true,  "autodocs": true}
