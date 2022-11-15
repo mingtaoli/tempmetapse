@@ -1,0 +1,42 @@
+db = db.getSiblingDB("admin");
+db = db.getSiblingDB("authorization");
+if (!db.getUser("admin")) {
+    db.createUser({
+        user: "admin",
+        pwd: "dlgcdxlgjzdsys",
+        roles: [
+            {
+                role: "readWrite",
+                db: "authorization",
+            },
+        ],
+    });
+}
+
+db = db.getSiblingDB("admin");
+if (!db.getUser("admin")) {
+    db.createUser({
+        user: "admin",
+        pwd: "dlgcdxlgjzdsys",
+        roles: [
+            {
+                role: "readWrite",
+                db: "admin",
+            },
+        ],
+    });
+}
+
+db = db.getSiblingDB("metapse");
+if (!db.getUser("admin")) {
+    db.createUser({
+        user: "admin",
+        pwd: "dlgcdxlgjzdsys",
+        roles: [
+            {
+                role: "readWrite",
+                db: "metapse",
+            },
+        ],
+    });
+}

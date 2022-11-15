@@ -35,6 +35,10 @@ services:
       - ./mongo/mongo_db:/data/db
       - ./mongo/mongo_config:/data/configdb
       - ./mongo/mongo-entrypoint:/docker-entrypoint-initdb.d
+    environment:
+      - MONGO_INITDB_DATABASE=metapse
+      - MONGO_INITDB_ROOT_USERNAME=metapse
+      - MONGO_INITDB_ROOT_PASSWORD=dlgcdxlgjzdsys
     logging:
       driver: json-file
       options:
