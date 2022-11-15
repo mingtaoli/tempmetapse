@@ -28,17 +28,13 @@ services:
     container_name: metapse-mongo
     hostname: metapse-mongo
     restart: always
+    command: [--auth]
     ports:
       - 27017:27017
     volumes:
       - ./mongo/mongo_db:/data/db
       - ./mongo/mongo_config:/data/configdb
       - ./mongo/mongo-entrypoint:/docker-entrypoint-initdb.d
-    # environment:
-    #   - TZ=Asia/Shanghai
-    #   - MONGO_INITDB_DATABASE=metapse
-    #   - MONGO_INITDB_ROOT_USERNAME=admin
-    #   - MONGO_INITDB_ROOT_PASSWORD=dlgcdxlgjzdsys
     logging:
       driver: json-file
       options:
@@ -46,40 +42,6 @@ services:
         max-file: "20"
     networks:
       - metapsenet
-
-  juliaapi:
-    build:
-      context: ./juliaapi
-      dockerfile: ./Dockerfile
-    image: metapse/juliaapi:1.0.0
-    container_name: metapse-juliaapi
-    hostname: metapse-juliaapi
-    restart: always
-    command: julia --project=/opt/juliaapi http.jl
-    ports:
-      - "8080:8080"
-    volumes:
-      - juliaapi:/opt/juliaapi
-
-  metapse-web:
-    build:
-      context: ./metapseweb
-      dockerfile: ./Dockerfile
-    image: metapse/web:1.0.0
-    container_name: metapse-web
-    hostname: metapse-web
-    restart: always
-    ports:
-      - "80:80"
-      - "413:413"
-    volumes:
-      - metapseweb:/usr/share/nginx/html
-
-volumes:
-  mongo_config:
-  mongo_db:
-  juliaapi:
-  metapseweb:
 
 networks:
   metapsenet:
