@@ -1,4 +1,4 @@
-use("MetaPSELib");
+use("metapse");
 db.UnitDefinitions.drop()
 db.UnitDefinitions.insertMany([
 //-------------------------------------------------------------------------------------------------------

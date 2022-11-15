@@ -21,24 +21,9 @@
 // SOFTWARE.
 
 db = db.getSiblingDB("admin");
-db = db.getSiblingDB("authorization");
-if (!db.getUser("admin")) {
+if (!db.getUser("metapse")) {
     db.createUser({
-        user: "admin",
-        pwd: "dlgcdxlgjzdsys",
-        roles: [
-            {
-                role: "readWrite",
-                db: "authorization",
-            },
-        ],
-    });
-}
-
-db = db.getSiblingDB("admin");
-if (!db.getUser("admin")) {
-    db.createUser({
-        user: "admin",
+        user: "metapse",
         pwd: "dlgcdxlgjzdsys",
         roles: [
             {

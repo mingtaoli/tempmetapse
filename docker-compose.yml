@@ -23,22 +23,23 @@
 version: "3"
 
 services:
-  mongo:
+
+   mongo:
     image: mongo:6.0.2
     container_name: metapse-mongo
     hostname: metapse-mongo
     restart: always
+    command: [--auth]
     ports:
       - 27017:27017
     volumes:
       - ./mongo/mongo_db:/data/db
       - ./mongo/mongo_config:/data/configdb
       - ./mongo/mongo-entrypoint:/docker-entrypoint-initdb.d
-    # environment:
-    #   - TZ=Asia/Shanghai
-    #   - MONGO_INITDB_DATABASE=metapse
-    #   - MONGO_INITDB_ROOT_USERNAME=admin
-    #   - MONGO_INITDB_ROOT_PASSWORD=dlgcdxlgjzdsys
+    environment:
+      - MONGO_INITDB_DATABASE=admin
+      - MONGO_INITDB_ROOT_USERNAME=metapse
+      - MONGO_INITDB_ROOT_PASSWORD=dlgcdxlgjzdsys
     logging:
       driver: json-file
       options:
